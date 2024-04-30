@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mvp_mq/service_button.dart';
 
 class MQHome extends StatelessWidget {
-  const MQHome({super.key});
+  
+  const MQHome({super.key,required this.selectCampus});
+  final void Function() selectCampus;
   @override
-  Widget build(BuildContext context) {
+  Widget build( context) {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.pink[100],
@@ -13,16 +15,16 @@ class MQHome extends StatelessWidget {
           backgroundColor: Colors.pink,
           centerTitle: true,
         ),
-        
-        body: const Center(
+
+        body:  Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ServiceButton(text: 'Parking Spot'),
-              ServiceButton(text: 'Get a Coffee'),
-              ServiceButton(text: 'Book a Room'),
-              ServiceButton(text: 'Submit a Query'),
-              ServiceButton(text: 'Message'),
+            children: [
+              ServiceButton(text: 'Parking Spot',selectCampus:  selectCampus),
+              ServiceButton(text: 'Get a Coffee', selectCampus: (){}),
+              ServiceButton(text: 'Book a Room', selectCampus: (){}),
+              ServiceButton(text: 'Submit a Query', selectCampus: (){}),
+              ServiceButton(text: 'Message',selectCampus: (){}),
             ],
           ),
         ),

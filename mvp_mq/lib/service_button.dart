@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class ServiceButton extends StatefulWidget {
 
-  const ServiceButton({super.key, required this.text});
+  const ServiceButton({super.key, required this.text, required this.selectCampus});
     final String text;
+    final void Function() selectCampus;
+
 
 
   @override
@@ -14,6 +16,8 @@ class ServiceButton extends StatefulWidget {
   }
 
 class _ServiceButtonState extends State<ServiceButton> {
+
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,12 +31,7 @@ class _ServiceButtonState extends State<ServiceButton> {
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
-        onPressed: () {
-          // Implement stateful logic here, e.g., incrementing a counter
-          setState(() {
-            // State change like updating UI
-          });
-        },
+        onPressed: widget.selectCampus,
         child: Text(widget.text),
       ),
     );
