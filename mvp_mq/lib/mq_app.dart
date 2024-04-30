@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_mq/enter_details.dart';
 import 'package:mvp_mq/mq_home.dart';
 import 'package:mvp_mq/select_campus.dart';
 
@@ -18,9 +19,14 @@ class _MQApp extends State<MQApp>{
   }
   void selectCampus(){
     setState(() {
-       activeScreen = const SelectCampus();
+       activeScreen =  SelectCampus(enterDetails: enterDetails);
     });
    
+  }
+  void enterDetails(){
+    setState(() {
+      activeScreen = const EnterDetails();
+    });
   }
 @override
   Widget build(context){
