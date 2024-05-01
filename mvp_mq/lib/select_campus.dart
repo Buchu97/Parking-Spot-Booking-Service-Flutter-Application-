@@ -7,8 +7,8 @@ class SelectCampus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return
+       Scaffold(
         backgroundColor:
             Colors.pink[100], // Background color of the entire screen
         appBar: AppBar(
@@ -42,7 +42,7 @@ class SelectCampus extends StatelessWidget {
                 selectCampus: () {}),
           ],
         ),
-      ),
+      
     );
   }
 }

@@ -7,8 +7,8 @@ class MQHome extends StatelessWidget {
   final void Function() selectCampus;
   @override
   Widget build( context) {
-    return MaterialApp(
-      home: Scaffold(
+    return 
+      Scaffold(
         backgroundColor: Colors.pink[100],
         appBar: AppBar(
           title: const Text('Welcome to MQ APP'),
@@ -28,7 +28,7 @@ class MQHome extends StatelessWidget {
             ],
           ),
         ),
-      ),
+    
     );
   }
 }
