@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_mq/enter_details.dart';
 import 'package:mvp_mq/service_button.dart';
 
 class SelectCampus extends StatelessWidget {
-  const SelectCampus({super.key, required this.enterDetails});
-  final void Function() enterDetails;
+  const SelectCampus({super.key});
+  // final void Function() enterDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,11 @@ class SelectCampus extends StatelessWidget {
             ),
             ServiceButton(
                 text: 'Wallumattagal Campus\nMacquarie Park',
-                nextPage: enterDetails),
+                nextPage: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const EnterDetails(),
+                ));
+              }),
             ServiceButton(
                 text: 'Macquarie City Campus\nSydney, Australia',
                 nextPage: () {}),

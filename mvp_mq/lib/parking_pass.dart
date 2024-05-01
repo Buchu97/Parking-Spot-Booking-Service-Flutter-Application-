@@ -5,8 +5,15 @@ class ParkingPass extends StatelessWidget{
 
 @override
   Widget build(context){
-  return const Center(
-        child: Text("ler ha"),
+  return  Scaffold(
+       appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: Colors.pink,
+          elevation: 0,
+        ),
   );
 
 }
