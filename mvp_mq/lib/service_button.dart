@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ServiceButton extends StatefulWidget {
 
-  const ServiceButton({super.key, required this.text, required this.selectCampus});
+  const ServiceButton({super.key, required this.text, required this.nextPage});
     final String text;
-    final void Function() selectCampus;
+    final void Function() nextPage;
 
 
 
@@ -31,7 +31,7 @@ class _ServiceButtonState extends State<ServiceButton> {
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
-        onPressed: widget.selectCampus,
+        onPressed: widget.nextPage,
         child: Text(widget.text),
       ),
     );

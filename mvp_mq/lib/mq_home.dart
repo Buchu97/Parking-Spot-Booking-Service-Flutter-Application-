@@ -20,11 +20,11 @@ class MQHome extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ServiceButton(text: 'Parking Spot',selectCampus:  selectCampus),
-              ServiceButton(text: 'Get a Coffee', selectCampus: (){}),
-              ServiceButton(text: 'Book a Room', selectCampus: (){}),
-              ServiceButton(text: 'Submit a Query', selectCampus: (){}),
-              ServiceButton(text: 'Message',selectCampus: (){}),
+              ServiceButton(text: 'Parking Spot',nextPage:  selectCampus),
+              ServiceButton(text: 'Get a Coffee', nextPage: (){}),
+              ServiceButton(text: 'Book a Room', nextPage: (){}),
+              ServiceButton(text: 'Submit a Query', nextPage: (){}),
+              ServiceButton(text: 'Message',nextPage: (){}),
             ],
           ),
         ),

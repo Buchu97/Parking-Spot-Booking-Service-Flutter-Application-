@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mvp_mq/service_button.dart';
 
 class EnterDetails extends StatelessWidget {
-  const EnterDetails({super.key});
+  const EnterDetails({super.key, required this.parkingPass});
+    final void Function() parkingPass;
+
 
   @override
   Widget build(context) {
@@ -76,7 +78,7 @@ class EnterDetails extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              ServiceButton(text: "Continue", selectCampus: () {})
+              ServiceButton(text: "Continue",  nextPage: parkingPass),
             ],
           ),
         ),

@@ -36,10 +36,10 @@ class SelectCampus extends StatelessWidget {
             ),
             ServiceButton(
                 text: 'Wallumattagal Campus\nMacquarie Park',
-                selectCampus: enterDetails),
+                nextPage: enterDetails),
             ServiceButton(
                 text: 'Macquarie City Campus\nSydney, Australia',
-                selectCampus: () {}),
+                nextPage: () {}),
           ],
         ),
       
