@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/service_button.dart';
 
-class EnterDetails extends StatelessWidget {
-  const EnterDetails({super.key, required this.parkingPass});
+class EnterDetails extends StatefulWidget {
+   const EnterDetails({super.key, required this.parkingPass});
     final void Function() parkingPass;
+
+  @override
+  State<EnterDetails> createState(){
+    return _EnterDetails();
+  }
+}
+
+
+class _EnterDetails extends State<EnterDetails>{
+  final _locationTextController = TextEditingController();
+  final _durationTextController = TextEditingController();
+  final _vehicleNumTextController = TextEditingController();
+  @override
+  void dispose() {
+     _locationTextController.dispose();
+   _durationTextController.dispose();
+   _vehicleNumTextController.dispose();
+    super.dispose();
+  }
+
 
 
   @override
@@ -30,17 +50,23 @@ class EnterDetails extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               const SizedBox(height: 8),
-              TextFormField(
+              TextField(
+                controller: _locationTextController,
+                // style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
+                  
                   hintText: 'Carpark - P South 2',
+                  hintStyle: const TextStyle(color:  Color.fromARGB(255, 191, 188, 188)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
                   ),
                 ),
               ),
+              
+         
               const SizedBox(height: 20),
               const Text(
                 'Enter Duration',
@@ -48,11 +74,14 @@ class EnterDetails extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               const SizedBox(height: 8),
-              TextFormField(
+              TextField(
+                controller: _durationTextController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   hintText: '10 AM - 12 PM',
+                  hintStyle: const TextStyle(color: Color.fromARGB(255, 191, 188, 188)),
+
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -66,11 +95,15 @@ class EnterDetails extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               const SizedBox(height: 8),
-              TextFormField(
+              TextField(
+                controller: _vehicleNumTextController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
+
                   hintText: 'ABC 6251 ALIA',
+                  hintStyle: const TextStyle(color: Color.fromARGB(255, 191, 188, 188)),
+
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -78,7 +111,7 @@ class EnterDetails extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              ServiceButton(text: "Continue",  nextPage: parkingPass),
+              ServiceButton(text: "Continue",  nextPage: widget.parkingPass),
             ],
           ),
         ),
