@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
+import 'package:mvp_mq/extension.dart';
 import 'package:mvp_mq/mq_app.dart';
 import 'package:mvp_mq/service_button.dart';
 
@@ -49,7 +50,10 @@ class ParkingPass extends StatelessWidget{
               
               
               ServiceButton(
-                text: "Extend Time",nextPage: (){},
+                text: "Extend Time",nextPage: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Extension(),
+                  ));},
                 // style: ElevatedButton.styleFrom(
                 //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
                 // ),

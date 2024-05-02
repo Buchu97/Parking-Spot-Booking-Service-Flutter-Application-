@@ -43,22 +43,15 @@ class _EnterDetails extends State<EnterDetails>{
     };
 
     int id = await DatabaseHelper().insertParkingPass(parkingPassData);
-    //  print("Inserted ID: $id"); 
+ 
      if(!mounted) return;
                   
                   Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) =>   ParkingPass(id: id)));
-    // return id;  // Return the ID instead of navigating here
+    
   }
 
-//  void printParkingPassHistory() async {
-//     List<Map<String, dynamic>> parkingPassHistory = await DatabaseHelper().getParkingPassHistory();
-//     print("Parking Pass History: $parkingPassHistory");
-//     // Optionally, iterate over each entry and print it
-//     for (var pass in parkingPassHistory) {
-//       print("ID: ${pass['id']}, Location: ${pass['parkingLocation']}, Plate: ${pass['numberPlate']}");
-//     }
-//   }
+
 
 
 
