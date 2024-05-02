@@ -24,13 +24,18 @@ class _ServiceButtonState extends State<ServiceButton> {
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white, backgroundColor: Colors.pinkAccent,
-          textStyle: const TextStyle(fontSize: 18),
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-        ),
+                foregroundColor: Colors.white, backgroundColor: Colors.pink,
+                textStyle: const TextStyle(fontSize: 18),
+              ),
+        // ElevatedButton.styleFrom(
+          
+        //   foregroundColor: Colors.white, backgroundColor: Colors.pinkAccent,
+        //   textStyle: const TextStyle(fontSize: 18),
+        //   padding: const EdgeInsets.symmetric(vertical: 12.0),
+        //   shape: RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.circular(10.0),
+        //   ),
+        // ),
         onPressed: widget.nextPage,
         child: Text(widget.text),
       ),
