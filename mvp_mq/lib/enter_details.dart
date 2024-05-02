@@ -116,7 +116,7 @@ class _EnterDetails extends State<EnterDetails>{
                 const SizedBox(height: 20),
                 ServiceButton(text: "Continue",  nextPage: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ParkingPass(),
+                  builder: (context) =>  ParkingPass(numberPlate: _vehicleNumTextController.text,duration: _durationTextController.text, parkingLocation: _locationTextController.text),
                 ));
               }),
               ],

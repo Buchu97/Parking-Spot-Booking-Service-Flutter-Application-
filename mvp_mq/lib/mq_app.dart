@@ -35,11 +35,11 @@ class _MQApp extends State<MQApp>{
   //   //   activeScreen =  EnterDetails(parkingPass: parkingPass);
   //   // });
   // }
-  void parkingPass(){
-    setState(() {
-      activeScreen = const ParkingPass();
-    });
-  }
+  // void parkingPass(){
+  //   setState(() {
+  //     activeScreen = const ParkingPass();
+  //   });
+  // }
 @override
   Widget build(context){
     return MaterialApp( 

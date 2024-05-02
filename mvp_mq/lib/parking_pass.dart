@@ -3,7 +3,10 @@ import 'package:mvp_mq/mq_app.dart';
 import 'package:mvp_mq/service_button.dart';
 
 class ParkingPass extends StatelessWidget{
-  const ParkingPass({super.key});
+  const ParkingPass({super.key, required this.numberPlate, required this.duration, required this.parkingLocation});
+  final String numberPlate;
+  final String duration;
+  final String parkingLocation;
 
 @override
   Widget build(context){
@@ -30,10 +33,10 @@ class ParkingPass extends StatelessWidget{
             ),
             const SizedBox(height: 20),
             _infoCard("Campus Location:", "Wallumattagal Campus Macquarie Park"),
-            _infoCard("Parking Location:", "Carpark - P South 2"),
+            _infoCard("Parking Location:", parkingLocation),
             _infoCard("Parking Spot No:", "A10"),
-            _infoCard("Number Plate:", "ABC 6251"),
-            _infoCard("Duration:", "10 AM - 12 PM"),
+            _infoCard("Number Plate:", numberPlate),
+            _infoCard("Duration:", duration),
             _infoCard("To Pay:", "\$50"),
             _infoCard("Date:", "05/04/2024"),
             const Padding(
