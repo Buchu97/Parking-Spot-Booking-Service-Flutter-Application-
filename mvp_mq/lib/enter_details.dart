@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_mq/Data/sqflite_database.dart';
 import 'package:mvp_mq/parking_pass.dart';
 import 'package:mvp_mq/service_button.dart';
 // import 'package:mvp_mq/mq_app.dart';
@@ -6,6 +7,7 @@ import 'package:mvp_mq/service_button.dart';
 class EnterDetails extends StatefulWidget {
    const EnterDetails({super.key});
     // final void Function() parkingPass;
+  // Future<int> key;
 
   @override
   State<EnterDetails> createState(){
@@ -18,6 +20,7 @@ class _EnterDetails extends State<EnterDetails>{
   final _locationTextController = TextEditingController();
   final _durationTextController = TextEditingController();
   final _vehicleNumTextController = TextEditingController();
+  
   @override
   void dispose() {
      _locationTextController.dispose();
@@ -25,6 +28,37 @@ class _EnterDetails extends State<EnterDetails>{
    _vehicleNumTextController.dispose();
     super.dispose();
   }
+
+   
+
+  void insertDataAndRetrieveId() async {
+    Map<String, dynamic> parkingPassData = {
+      'campusLocation': 'Wallumattagal Campus Macquarie Park', 
+      'parkingLocation': _locationTextController.text,
+      'parkingSpotNo': 'A10', 
+      'numberPlate': _vehicleNumTextController.text,
+      'duration': _durationTextController.text,
+      'amountPaid': 50.00, 
+      'date': DateTime.now().toString() 
+    };
+
+    int id = await DatabaseHelper().insertParkingPass(parkingPassData);
+    //  print("Inserted ID: $id"); 
+     if(!mounted) return;
+                  
+                  Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>   ParkingPass(id: id)));
+    // return id;  // Return the ID instead of navigating here
+  }
+
+//  void printParkingPassHistory() async {
+//     List<Map<String, dynamic>> parkingPassHistory = await DatabaseHelper().getParkingPassHistory();
+//     print("Parking Pass History: $parkingPassHistory");
+//     // Optionally, iterate over each entry and print it
+//     for (var pass in parkingPassHistory) {
+//       print("ID: ${pass['id']}, Location: ${pass['parkingLocation']}, Plate: ${pass['numberPlate']}");
+//     }
+//   }
 
 
 
@@ -114,11 +148,8 @@ class _EnterDetails extends State<EnterDetails>{
                   ),
                 ),
                 const SizedBox(height: 20),
-                ServiceButton(text: "Continue",  nextPage: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>  ParkingPass(numberPlate: _vehicleNumTextController.text,duration: _durationTextController.text, parkingLocation: _locationTextController.text),
-                ));
-              }),
+                ServiceButton(text: "Continue",  nextPage:insertDataAndRetrieveId
+                ),
               ],
             ),
           ),

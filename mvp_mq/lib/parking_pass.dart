@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:mvp_mq/Data/sqflite_database.dart';
 import 'package:mvp_mq/mq_app.dart';
 import 'package:mvp_mq/service_button.dart';
 
 class ParkingPass extends StatelessWidget{
-  const ParkingPass({super.key, required this.numberPlate, required this.duration, required this.parkingLocation});
-  final String numberPlate;
-  final String duration;
-  final String parkingLocation;
+  const ParkingPass({super.key, required this.id});
+  final int id;
+
+ 
 
 @override
   Widget build(context){
@@ -19,67 +22,101 @@ class ParkingPass extends StatelessWidget{
           backgroundColor: Colors.pink,
           elevation: 0,
         ),
-         body: Container(
-        color: Colors.pink[100], // Set background color
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            const Text(
-              'Your Parking Pass',
-              style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+         body: SingleChildScrollView(
+           child: Container(
+                   color: Colors.pink[100], // Set background color
+                   padding: const EdgeInsets.all(20),
+                   child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              
+           
+              FutureBuilder<Map<String,dynamic>?>(
+                   future: DatabaseHelper().getParkingPassById(id),
+                   builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                return buildParkingPassContent(context, snapshot.data!);
+              } else {
+                return const Center(child: Text('No Parking Pass Found'));
+              }
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+                   },
+                 ),
+              
+              
+              ServiceButton(
+                text: "Extend Time",nextPage: (){},
+                // style: ElevatedButton.styleFrom(
+                //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
+                // ),
+                // onPressed: () {},
+                // child:const Text('Extend Time'),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ServiceButton(
+                    text: "Cancel",nextPage: (){
+                      Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const MQApp(),
+                  ));
+                    },
+           
+                    // style: ElevatedButton.styleFrom(
+                    //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
+                    // ),
+                    // onPressed: () => Navigator.of(context).pop(),
+                    // child: const Text('Cancel'),
+                  ),
+                  ServiceButton(
+                    text: "Pay",nextPage: (){},
+                  ),
+                  
+                ],
+              ),
+            ],
+                   ),
+                 ),
+         ),
+    );
+  }
+
+   Widget buildParkingPassContent(BuildContext context, Map<String, dynamic> data) {
+    return Container(
+      color: Colors.pink[100],
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          const Text(
+            'Your Parking Pass',
+            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20),
+          _infoCard("Campus Location:", data['campusLocation']),
+          _infoCard("Parking Location:", data['parkingLocation']),
+          _infoCard("Parking Spot No:", data['parkingSpotNo']),
+          _infoCard("Number Plate:", data['numberPlate']),
+          _infoCard("Duration:", data['duration']),
+          _infoCard("To Pay:", "\$${data['amountPaid']}"),
+          _infoCard("Date:", data['date']),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.0),
+            child: Text(
+              'Note: Exceeding the time on your Parking Pass will result in \$10 fine for every 10 minutes\nYou can still choose to extend the time limit on your parking pass!',
+              style: TextStyle(color: Colors.white, fontSize: 16),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 20),
-            _infoCard("Campus Location:", "Wallumattagal Campus Macquarie Park"),
-            _infoCard("Parking Location:", parkingLocation),
-            _infoCard("Parking Spot No:", "A10"),
-            _infoCard("Number Plate:", numberPlate),
-            _infoCard("Duration:", duration),
-            _infoCard("To Pay:", "\$50"),
-            _infoCard("Date:", "05/04/2024"),
-            const Padding(
-              padding:  EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                'Note: Exceeding the time on your Parking Pass will result in \$10 fine for every 10 minutes\nYou can still choose to extend the time limit on your parking pass!',
-                style: TextStyle(color: Colors.white, fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ServiceButton(
-              text: "Extend Time",nextPage: (){},
-              // style: ElevatedButton.styleFrom(
-              //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
-              // ),
-              // onPressed: () {},
-              // child:const Text('Extend Time'),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ServiceButton(
-                  text: "Cancel",nextPage: (){
-                    Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const MQApp(),
-                ));
-                  },
-
-                  // style: ElevatedButton.styleFrom(
-                  //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
-                  // ),
-                  // onPressed: () => Navigator.of(context).pop(),
-                  // child: const Text('Cancel'),
-                ),
-                ServiceButton(
-                  text: "Pay",nextPage: (){},
-                ),
-                
-              ],
-            ),
-          ],
-        ),
+          ),
+          // Additional widgets like buttons
+        ],
       ),
     );
   }

@@ -47,13 +47,26 @@ class DatabaseHelper {
     whereArgs: [id],
   );
 }
-Future<int> deleteParkingPass(int id) async {
+Future<int> deleteParkingPass( int id) async {
   final db = await database;
   return await db.delete(
     'ParkingPass',
     where: 'id = ?',
     whereArgs: [id],
   );
+}
+Future<Map<String, dynamic>?> getParkingPassById(int id) async {
+  final db = await database;
+  List<Map<String,dynamic>?> maps = await db.query(
+    'ParkingPass',
+    where: 'id = ?',
+    whereArgs: [id],
+    limit: 1
+  );
+  if (maps.isNotEmpty) {
+    return maps.first;
+  }
+  return null;
 }
 
 

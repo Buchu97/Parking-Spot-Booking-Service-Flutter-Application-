@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:mvp_mq/enter_details.dart';
 import 'package:mvp_mq/mq_home.dart';
-import 'package:mvp_mq/parking_pass.dart';
+// import 'package:mvp_mq/parking_pass.dart';
 // import 'package:mvp_mq/select_campus.dart';
 
 class MQApp extends StatefulWidget{
