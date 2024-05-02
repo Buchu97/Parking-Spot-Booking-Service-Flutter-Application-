@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
+import 'package:mvp_mq/confirmation.dart';
+
 import 'package:mvp_mq/service_button.dart';
 
 class Extension extends StatefulWidget {
@@ -24,25 +26,25 @@ class _ExtensionState extends State<Extension> {
   void extendTime(int hoursToAdd, int id) async {
   DatabaseHelper dbHelper = DatabaseHelper();
 
-  // Fetch the existing parking pass
+ 
   Map<String, dynamic>? parkingPass = await dbHelper.getParkingPassById(id);
   if (parkingPass != null) {
-    // Get the current duration and convert it to an integer
+  
     int currentDuration = int.parse(parkingPass['duration']);
 
-    // Calculate the new duration
+   
     int newDuration = currentDuration + hoursToAdd;
 
-    // Prepare the data to update
+   
     Map<String, dynamic> newData = {
-      'duration': newDuration.toString()  // Convert it back to a string if stored as a string
+      'duration': newDuration.toString()  
     };
 
-    // Update the parking pass with the new duration
+    
     await dbHelper.updateParkingPass(id, newData);
   } else {
     print("No parking pass found with id $id");
-    // Handle the error or inform the user as needed
+    
   }
 }
 
@@ -88,9 +90,16 @@ class _ExtensionState extends State<Extension> {
               
                 int? hours = int.tryParse(_hoursController.text);
                 if (hours != null) {
+                  extendTime(hours, widget.id);
                  Map<String, dynamic>? updatedPass = await DatabaseHelper().getParkingPassById(widget.id);
-                  print("Updated Duration: ${updatedPass?['duration']}");
-                 extendTime(hours, widget.id);
+                  
+                 
+                    print("Updated Duration: ${updatedPass?['duration']}");
+                 
+                 // ignore: use_build_context_synchronously
+                 Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Confirmation(id: widget.id),
+                  ));
                  
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

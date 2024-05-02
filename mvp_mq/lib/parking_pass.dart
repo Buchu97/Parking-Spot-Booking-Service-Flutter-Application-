@@ -97,7 +97,7 @@ class ParkingPass extends StatelessWidget{
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
+        children: [
           const Text(
             'Your Parking Pass',
             style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
@@ -108,6 +108,7 @@ class ParkingPass extends StatelessWidget{
           _infoCard("Parking Location:", data['parkingLocation']),
           _infoCard("Parking Spot No:", data['parkingSpotNo']),
           _infoCard("Number Plate:", data['numberPlate']),
+          _infoCard("Start Time:", data['startTime']),
           _infoCard("Duration:", data['duration']),
           _infoCard("To Pay:", "\$${data['amountPaid']}"),
           _infoCard("Date:", data['date']),

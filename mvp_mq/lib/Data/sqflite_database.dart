@@ -25,6 +25,7 @@ class DatabaseHelper {
             parkingLocation TEXT,
             parkingSpotNo TEXT,
             numberPlate TEXT,
+            startTime TEXT,
             duration TEXT,
             amountPaid REAL,
             date TEXT
@@ -74,4 +75,10 @@ Future<Map<String, dynamic>?> getParkingPassById(int id) async {
     final db = await database;
     return await db.query('ParkingPass');
   }
+  Future<void> deleteCustomDatabase() async {
+  final directory = await getApplicationDocumentsDirectory();
+  final path = join(directory.path, 'parking.db');
+  await deleteDatabase(path);
+  print("Database deleted successfully.");
+}
 }

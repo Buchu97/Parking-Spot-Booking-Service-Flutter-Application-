@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/enter_details.dart';
 import 'package:mvp_mq/service_button.dart';
+import 'package:mvp_mq/Data/sqflite_database.dart';
 
 class SelectCampus extends StatelessWidget {
   const SelectCampus({super.key});
   // final void Function() enterDetails;
+
+  void  deleteDatabase()async {
+    DatabaseHelper dbHelper = DatabaseHelper();
+    await dbHelper.deleteCustomDatabase();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,10 @@ class SelectCampus extends StatelessWidget {
               }),
             ServiceButton(
                 text: 'Macquarie City Campus\nSydney, Australia',
-                nextPage: () {}),
+                nextPage: 
+    deleteDatabase
+    // Optionally restart app or confirm to the user
+),
           ],
         ),
       
