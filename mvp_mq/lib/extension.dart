@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
-import 'package:mvp_mq/confirmation.dart';
 
 import 'package:mvp_mq/service_button.dart';
 
@@ -19,6 +18,7 @@ class _ExtensionState extends State<Extension> {
  
 
   @override
+  
   void dispose() {
     _hoursController.dispose();
     super.dispose();
@@ -95,18 +95,49 @@ class _ExtensionState extends State<Extension> {
                   
                  
                     print("Updated Duration: ${updatedPass?['duration']}");
+                    if (updatedPass != null) {
+        // Show a snackbar to inform the user that their time has been extended
+        ScaffoldMessenger.of(context).showSnackBar(
+         const SnackBar(
+            content: Text('Your time has been extended.'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+        
+        // Navigate back to the parking pass page after a short delay
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).pop();
+        });
+      } else {
+        // Handle the case where no updated pass is found
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Failed to retrieve updated parking pass.'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    } else {
+      // Handle invalid input for hours
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter a valid number of hours.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
                  
                  // ignore: use_build_context_synchronously
-                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Confirmation(id: widget.id),
-                  ));
+                //  Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => Confirmation(id: widget.id),
+                //   ));
                  
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Please enter a valid number'))
-                  );
+                // } else {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(content: Text('Please enter a valid number'))
+                //   );
                 }
-              },)
+              )
           ],
         ),
       ),

@@ -6,12 +6,38 @@ import 'package:mvp_mq/extension.dart';
 import 'package:mvp_mq/mq_app.dart';
 import 'package:mvp_mq/service_button.dart';
 
-class ParkingPass extends StatelessWidget{
+class ParkingPass extends StatefulWidget{
   const ParkingPass({super.key, required this.id});
   final int id;
 
- 
+ @override
+ State<ParkingPass> createState(){
+  return _ParkingPass();
+ }
+}
 
+class _ParkingPass extends State<ParkingPass>{
+   Map<String, dynamic>? parkingPassData;
+   @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+  void loadData() async {
+    var data = await DatabaseHelper().getParkingPassById(widget.id);
+    if (data != null) {
+      setState(() {
+        parkingPassData = data;
+      });
+    }
+  }
+  Future<void> navigateAndRefresh() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Extension(id: widget.id)),
+    );
+    loadData();
+  }
 @override
   Widget build(context){
   return  Scaffold(
@@ -34,7 +60,7 @@ class ParkingPass extends StatelessWidget{
               
            
               FutureBuilder<Map<String,dynamic>?>(
-                   future: DatabaseHelper().getParkingPassById(id),
+                   future: DatabaseHelper().getParkingPassById(widget.id),
                    builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
@@ -50,10 +76,11 @@ class ParkingPass extends StatelessWidget{
               
               
               ServiceButton(
-                text: "Extend Time",nextPage: (){
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>Extension(id:id),
-                  ));},
+                text: "Extend Time",nextPage: navigateAndRefresh
+                // (){
+                //   Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) =>Extension(id:id),
+                //   ));},
                 // style: ElevatedButton.styleFrom(
                 //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
                 // ),
