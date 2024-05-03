@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_mq/map_view.dart';
 import 'package:mvp_mq/select_campus.dart';
 import 'package:mvp_mq/service_button.dart';
 
@@ -26,8 +27,14 @@ class MQHome extends StatelessWidget {
                   builder: (context) => const SelectCampus(),
                 ));
               }),
-              ServiceButton(text: 'Get a Coffee', nextPage: (){}),
-              ServiceButton(text: 'Book a Room', nextPage: (){}),
+              ServiceButton(text: 'Wallumattagal Campus Map', nextPage: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const MapWidget(imagePath: 'lib/assets/mq_campus_map.jpeg'),
+                ));
+              }),
+              ServiceButton(text: 'Book a Room', nextPage: (){
+                
+              }),
               ServiceButton(text: 'Submit a Query', nextPage: (){}),
               ServiceButton(text: 'Message',nextPage: (){}),
             ],

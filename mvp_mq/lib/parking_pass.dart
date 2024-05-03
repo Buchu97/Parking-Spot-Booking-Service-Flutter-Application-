@@ -54,7 +54,7 @@ class _ParkingPass extends State<ParkingPass> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.pink[100], // Set background color
+          color: Colors.pink[100],
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +168,7 @@ class _ParkingPass extends State<ParkingPass> {
               textAlign: TextAlign.center,
             ),
           ),
-          // Additional widgets like buttons
+          
         ],
       ),
     );
