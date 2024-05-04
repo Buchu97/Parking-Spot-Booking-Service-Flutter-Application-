@@ -24,7 +24,7 @@ class _ExtensionState extends State<Extension> {
     super.dispose();
   }
   void extendTime(int hoursToAdd, int id) async {
-  DatabaseHelper dbHelper = DatabaseHelper();
+  DatabaseHelper dbHelper = DatabaseHelper.instance;
 
  
   Map<String, dynamic>? parkingPass = await dbHelper.getParkingPassById(id);
@@ -91,7 +91,7 @@ class _ExtensionState extends State<Extension> {
                 int? hours = int.tryParse(_hoursController.text);
                 if (hours != null) {
                   extendTime(hours, widget.id);
-                 Map<String, dynamic>? updatedPass = await DatabaseHelper().getParkingPassById(widget.id);
+                 Map<String, dynamic>? updatedPass = await DatabaseHelper.instance.getParkingPassById(widget.id);
                   
                  
                     print("Updated Duration: ${updatedPass?['duration']}");

@@ -44,7 +44,7 @@ class _EnterDetails extends State<EnterDetails> {
       'date': DateTime.now().toString()
     };
 
-    int id = await DatabaseHelper().insertParkingPass(parkingPassData);
+    int id = await DatabaseHelper.instance.insertParkingPass(parkingPassData);
     print(id);
 
     if (!mounted) return;

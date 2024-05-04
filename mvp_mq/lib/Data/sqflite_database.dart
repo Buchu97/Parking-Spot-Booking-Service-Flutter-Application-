@@ -1,10 +1,20 @@
+import 'dart:io';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
+  static DatabaseHelper? _instance;
   static Database? _database;
 
+  DatabaseHelper._(); 
+  static DatabaseHelper get instance {
+  
+    _instance ??= DatabaseHelper._();
+    return _instance!;
+  }
+   
   static Future<Database> get database async {
     if (_database != null) return _database!;
     _database = await initializeDB();
@@ -12,8 +22,8 @@ class DatabaseHelper {
   }
 
   static Future<Database> initializeDB() async {
-    final directory = await getApplicationDocumentsDirectory();
-    final path = join(directory.path, 'parking.db');
+    Directory directory = await getApplicationDocumentsDirectory();
+    String path = join(directory.path, 'parking.db');
     return await openDatabase(
       path,
       version: 1,
@@ -76,9 +86,10 @@ Future<Map<String, dynamic>?> getParkingPassById(int id) async {
     return await db.query('ParkingPass');
   }
   Future<void> deleteCustomDatabase() async {
-  final directory = await getApplicationDocumentsDirectory();
+   final directory = await getApplicationDocumentsDirectory();
   final path = join(directory.path, 'parking.db');
   await deleteDatabase(path);
+  _database = null;  // Ensure the database object is reset
   print("Database deleted successfully.");
 }
 }

@@ -6,7 +6,7 @@ class Confirmation extends StatelessWidget{
   final int id;
    
 Future<Text> getUpdatedDuration() async {
-  final Map<String, dynamic>? updatedPass = await DatabaseHelper().getParkingPassById(id);
+  final Map<String, dynamic>? updatedPass = await DatabaseHelper.instance.getParkingPassById(id);
   if (updatedPass != null) {
     return Text("Updated Duration: ${updatedPass['duration']}");
   } else {

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
+
 class ParkingHistoryScreen extends StatefulWidget {
   const ParkingHistoryScreen({super.key});
 
   @override
- 
-  State<ParkingHistoryScreen> createState(){
+  State<ParkingHistoryScreen> createState() {
     return _ParkingHistoryScreenState();
   }
 }
@@ -16,15 +16,22 @@ class _ParkingHistoryScreenState extends State<ParkingHistoryScreen> {
   @override
   void initState() {
     super.initState();
-    parkingHistory = DatabaseHelper().getParkingPassHistory();
+    parkingHistory = DatabaseHelper.instance.getParkingPassHistory();
   }
-   void refreshParkingHistory() {
+
+  void refreshParkingHistory() {
     setState(() {
-      parkingHistory = DatabaseHelper().getParkingPassHistory();
+      parkingHistory = DatabaseHelper.instance.getParkingPassHistory();
     });
   }
- Future<void> deleteParkingPass(int id) async {
-    await DatabaseHelper().deleteParkingPass(id);
+
+  Future<void> deleteParkingPass(int id) async {
+    await DatabaseHelper.instance.deleteParkingPass(id);
+    refreshParkingHistory();
+  }
+Future<void> deleteAllParkingPasses() async {
+    await DatabaseHelper.instance.deleteCustomDatabase();
+     await DatabaseHelper.database; 
     refreshParkingHistory(); 
   }
   @override
@@ -33,6 +40,13 @@ class _ParkingHistoryScreenState extends State<ParkingHistoryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.pink[300],
         title: const Text('Parking History'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete_forever),
+            onPressed: deleteAllParkingPasses,
+            tooltip: 'Delete All',
+          ),
+        ],
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: parkingHistory,
@@ -49,30 +63,32 @@ class _ParkingHistoryScreenState extends State<ParkingHistoryScreen> {
                 final parkingPass = data[index];
                 return Stack(
                   children: [
-                  Card(
-                    color: Colors.pink[50],
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.pink[300],
-                        child: Text('${index + 1}'),
-                      ),
-                                 
-                    title: Text(parkingPass['parkingLocation'] ?? 'Unknown Location'),
-                    subtitle: Text('Spot No: ${parkingPass['parkingSpotNo']} - Date: ${parkingPass['date']}'),
-                    trailing: Text('\$${parkingPass['amountPaid']}'),
-                  ),
-                  ),
-                  Positioned(
-                        width: 30,
-                        bottom: 10,
-                        right: 3,
-                        child: InkWell(
-                          onTap: () => deleteParkingPass(parkingPass['id']),
-                          child: Icon(Icons.delete, color: Colors.red[800], size: 25),
+                    Card(
+                      color: Colors.pink[50],
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.pink[300],
+                          child: Text('${index + 1}'),
                         ),
+                        title: Text(parkingPass['parkingLocation'] ??
+                            'Unknown Location'),
+                        subtitle: Text(
+                            'Spot No: ${parkingPass['parkingSpotNo']} - Date: ${parkingPass['date']}'),
+                        trailing: Text('\$${parkingPass['amountPaid']}'),
                       ),
-                    ],
-                  );
+                    ),
+                    Positioned(
+                      width: 30,
+                      bottom: 10,
+                      right: 3,
+                      child: InkWell(
+                        onTap: () => deleteParkingPass(parkingPass['id']),
+                        child: Icon(Icons.delete,
+                            color: Colors.red[800], size: 25),
+                      ),
+                    ),
+                  ],
+                );
               },
             );
           } else {

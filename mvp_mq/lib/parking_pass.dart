@@ -25,7 +25,7 @@ class _ParkingPass extends State<ParkingPass> {
   }
 
   void loadData() async {
-    var data = await DatabaseHelper().getParkingPassById(widget.id);
+    var data = await DatabaseHelper.instance.getParkingPassById(widget.id);
     if (data != null) {
       setState(() {
         parkingPassData = data;
@@ -61,7 +61,7 @@ class _ParkingPass extends State<ParkingPass> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               FutureBuilder<Map<String, dynamic>?>(
-                future: DatabaseHelper().getParkingPassById(widget.id),
+                future: DatabaseHelper.instance.getParkingPassById(widget.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
@@ -93,7 +93,7 @@ class _ParkingPass extends State<ParkingPass> {
                     text: "Cancel",
                     nextPage: () async {
                       
-                      int deletedCount = await DatabaseHelper().deleteParkingPass(widget.id);
+                      int deletedCount = await DatabaseHelper.instance.deleteParkingPass(widget.id);
                       if(deletedCount != 0){
                           ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
