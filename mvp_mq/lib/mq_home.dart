@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/map_view.dart';
+import 'package:mvp_mq/parking_history.dart';
 import 'package:mvp_mq/select_campus.dart';
 import 'package:mvp_mq/service_button.dart';
 
@@ -32,8 +33,10 @@ class MQHome extends StatelessWidget {
                   builder: (context) => const MapWidget(imagePath: 'lib/assets/mq_campus_map.jpeg'),
                 ));
               }),
-              ServiceButton(text: 'Book a Room', nextPage: (){
-                
+              ServiceButton(text: 'Parking History', nextPage: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ParkingHistoryScreen(),
+                ));
               }),
               ServiceButton(text: 'Submit a Query', nextPage: (){}),
               ServiceButton(text: 'Message',nextPage: (){}),
