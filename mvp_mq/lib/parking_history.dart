@@ -23,6 +23,7 @@ class _ParkingHistoryScreenState extends State<ParkingHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink[300],
         title: const Text('Parking History'),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
@@ -38,10 +39,18 @@ class _ParkingHistoryScreenState extends State<ParkingHistoryScreen> {
               itemCount: data.length,
               itemBuilder: (context, index) {
                 final parkingPass = data[index];
-                return ListTile(
+                return Card(
+                  color: Colors.pink[50],
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.pink[300],
+                      child: Text('${parkingPass['id']}'),
+                    ),
+               
                   title: Text(parkingPass['parkingLocation'] ?? 'Unknown Location'),
                   subtitle: Text('Spot No: ${parkingPass['parkingSpotNo']} - Date: ${parkingPass['date']}'),
                   trailing: Text('\$${parkingPass['amountPaid']}'),
+                ),
                 );
               },
             );
