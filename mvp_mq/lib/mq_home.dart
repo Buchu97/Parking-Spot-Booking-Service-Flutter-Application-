@@ -6,17 +6,25 @@ import 'package:mvp_mq/service_button.dart';
 
 class MQHome extends StatelessWidget {
   
-  const MQHome({super.key});
+  const MQHome({super.key,required this.toggleTheme});
+   final void Function(bool) toggleTheme;
   // final void Function() selectCampus;
   @override
   Widget build( context) {
     return 
       Scaffold(
-        backgroundColor: Colors.pink[100],
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           title: const Text('Welcome to MQ APP'),
-          backgroundColor: Colors.pink,
+          
+          // backgroundColor: Colors.pink,
           centerTitle: true,
+          actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: () => toggleTheme(Theme.of(context).brightness == Brightness.light),
+          ),
+        ],
         ),
 
         body:  Center(

@@ -13,16 +13,14 @@ class SelectCampus extends StatelessWidget {
   Widget build(BuildContext context) {
     return
        Scaffold(
-        backgroundColor:
-            Colors.pink[100], // Background color of the entire screen
+        
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back,
-                color: Colors.white), // Back button in AppBar
+               ), // Back button in AppBar
             onPressed: () => Navigator.of(context).pop(),
           ),
-          backgroundColor: Colors.pink,
-          elevation: 0, // Removes shadow under the AppBar
+       
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +32,7 @@ class SelectCampus extends StatelessWidget {
                 'Select a campus from below to proceed',
                 style: TextStyle(
                     fontSize: 20,
-                    color: Colors.white), // Style for the instruction text
+                   ), 
                 textAlign: TextAlign.center,
               ),
             ),

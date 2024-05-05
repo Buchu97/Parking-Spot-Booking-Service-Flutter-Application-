@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:mvp_mq/enter_details.dart';
+import 'package:mvp_mq/Data/theme_data.dart';
 import 'package:mvp_mq/mq_home.dart';
-// import 'package:mvp_mq/parking_pass.dart';
-// import 'package:mvp_mq/select_campus.dart';
 
 class MQApp extends StatefulWidget{
   const MQApp({super.key});
@@ -12,42 +10,30 @@ class MQApp extends StatefulWidget{
   }
 }
 class _MQApp extends State<MQApp>{
-  Widget? activeScreen;
-  @override
-   void initState() {
-    activeScreen =  const MQHome();
-    super.initState();
-  }
-  // void selectCampus(){
+  // Widget? activeScreen;
+  // @override
+  //  void initState() {
+  //   activeScreen =  const MQHome();
+  //   super.initState();
+  // }
 
-  //   setState(() {
-  //      activeScreen =  const SelectCampus();
-  //   });
-   
-  // }
-  // void enterDetails(){
-    
-  //   // setState(() {
-  //     Navigator.push(
-  //             context,
-  //             MaterialPageRoute(builder: (context) => EnterDetails(parkingPass: parkingPass)),
-  //           );
-  //   //   activeScreen =  EnterDetails(parkingPass: parkingPass);
-  //   // });
-  // }
-  // void parkingPass(){
-  //   setState(() {
-  //     activeScreen = const ParkingPass();
-  //   });
-  // }
+   ThemeMode _themeMode = ThemeMode.system; // Default to system theme
+
+  void toggleTheme(bool isDarkMode) {
+    setState(() {
+      _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
+    });
+  }
+  
 @override
   Widget build(context){
     return MaterialApp( 
-      home: Scaffold(
-        body: Container(
-         
-          child: activeScreen
-          )
+       theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: _themeMode,
+      home:  Scaffold(
+        body: MQHome(toggleTheme: toggleTheme), 
+          
       ),
     );
   

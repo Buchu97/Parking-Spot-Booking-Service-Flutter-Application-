@@ -51,14 +51,14 @@ class _ExtensionState extends State<Extension> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink[100],
+     
       appBar: AppBar(
         title: const Text('Extend Parking'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        backgroundColor: Colors.pink,
+       
       ),
       body: Container(
         
@@ -68,7 +68,7 @@ class _ExtensionState extends State<Extension> {
           children: [
             const Text(
               'Enter how many hours you want to extend',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
@@ -78,7 +78,7 @@ class _ExtensionState extends State<Extension> {
               decoration: InputDecoration(
                 hintText: '2 Hours',
                 filled: true,
-                fillColor: Colors.white,
+                
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -127,15 +127,7 @@ class _ExtensionState extends State<Extension> {
       );
     }
                  
-                 // ignore: use_build_context_synchronously
-                //  Navigator.of(context).push(MaterialPageRoute(
-                //     builder: (context) => Confirmation(id: widget.id),
-                //   ));
-                 
-                // } else {
-                //   ScaffoldMessenger.of(context).showSnackBar(
-                //     const SnackBar(content: Text('Please enter a valid number'))
-                //   );
+                
                 }
               )
           ],

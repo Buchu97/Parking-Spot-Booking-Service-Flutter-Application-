@@ -46,15 +46,14 @@ class _ParkingPass extends State<ParkingPass> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        backgroundColor: Colors.pink,
-        elevation: 0,
+        
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.pink[100],
+         
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,15 +74,6 @@ class _ParkingPass extends State<ParkingPass> {
                 },
               ),
               ServiceButton(text: "Extend Time", nextPage: navigateAndRefresh
-                  // (){
-                  //   Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) =>Extension(id:id),
-                  //   ));},
-                  // style: ElevatedButton.styleFrom(
-                  //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
-                  // ),
-                  // onPressed: () {},
-                  // child:const Text('Extend Time'),
                   ),
               const SizedBox(height: 10),
               Row(
@@ -117,11 +107,6 @@ class _ParkingPass extends State<ParkingPass> {
                     
                     },
 
-                    // style: ElevatedButton.styleFrom(
-                    //   foregroundColor: Colors.pink, backgroundColor: Colors.white, // Text color
-                    // ),
-                    // onPressed: () => Navigator.of(context).pop(),
-                    // child: const Text('Cancel'),
                   ),
                   ServiceButton(
                     text: "Pay",
@@ -139,7 +124,7 @@ class _ParkingPass extends State<ParkingPass> {
   Widget buildParkingPassContent(
       BuildContext context, Map<String, dynamic> data) {
     return Container(
-      color: Colors.pink[100],
+      
       padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -147,8 +132,7 @@ class _ParkingPass extends State<ParkingPass> {
         children: [
           const Text(
             'Your Parking Pass',
-            style: TextStyle(
-                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+           
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -164,7 +148,7 @@ class _ParkingPass extends State<ParkingPass> {
             padding: EdgeInsets.symmetric(vertical: 20.0),
             child: Text(
               'Note: Exceeding the time on your Parking Pass will result in \$10 fine for every 10 minutes\nYou can still choose to extend the time limit on your parking pass!',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+             
               textAlign: TextAlign.center,
             ),
           ),
@@ -180,12 +164,12 @@ class _ParkingPass extends State<ParkingPass> {
       child: RichText(
         text: TextSpan(
           text: '$title ',
-          style: const TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-          children: <TextSpan>[
+          style:Theme.of(context).textTheme.bodyMedium
+              ,
+          children: [
             TextSpan(
               text: value,
-              style: const TextStyle(fontWeight: FontWeight.normal),
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

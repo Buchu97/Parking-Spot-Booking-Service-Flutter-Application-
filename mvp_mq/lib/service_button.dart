@@ -23,10 +23,20 @@ class _ServiceButtonState extends State<ServiceButton> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.pink,
-                textStyle: const TextStyle(fontSize: 18),
-              ),
+        style:  Theme.of(context).elevatedButtonTheme.style,
+       
+        onPressed: widget.nextPage,
+        child: Text(widget.text),
+      ),
+    );
+  }
+}
+
+ //  ElevatedButton.styleFrom(
+                
+        //         // foregroundColor: Colors.white, backgroundColor: Colors.pink,
+        //         textStyle: const TextStyle(fontSize: 18),
+        //       ),
         // ElevatedButton.styleFrom(
           
         //   foregroundColor: Colors.white, backgroundColor: Colors.pinkAccent,
@@ -36,9 +46,3 @@ class _ServiceButtonState extends State<ServiceButton> {
         //     borderRadius: BorderRadius.circular(10.0),
         //   ),
         // ),
-        onPressed: widget.nextPage,
-        child: Text(widget.text),
-      ),
-    );
-  }
-}

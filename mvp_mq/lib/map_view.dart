@@ -12,33 +12,29 @@ class MapWidget extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        backgroundColor: Colors.pink,
+       
       ),
-      body: Container(
+      body: Center(
         
-        color: Colors.pink[100],
-        child: Center(
+        child: InteractiveViewer(
           
-          child: InteractiveViewer(
-            
-            boundaryMargin: const EdgeInsets.all(20.0),
-            minScale: 0.5,
-            maxScale: 2.0,
-            child: AspectRatio(
-              aspectRatio: 11 / 11,
-              child: Image.asset(
-                
-                imagePath,
-               
-                fit: BoxFit.fill,
-                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                  print(exception.toString());
-                      if (stackTrace != null) {
-              print(stackTrace);
-                      }
-                      return const Text('Failed to load image');
-                  },
-              ),
+          boundaryMargin: const EdgeInsets.all(20.0),
+          minScale: 0.5,
+          maxScale: 2.0,
+          child: AspectRatio(
+            aspectRatio: 11 / 11,
+            child: Image.asset(
+              
+              imagePath,
+             
+              fit: BoxFit.fill,
+              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                print(exception.toString());
+                    if (stackTrace != null) {
+            print(stackTrace);
+                    }
+                    return const Text('Failed to load image');
+                },
             ),
           ),
         ),
