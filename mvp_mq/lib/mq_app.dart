@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/theme_data.dart';
+
 import 'package:mvp_mq/sign_in.dart';
+import 'package:provider/provider.dart';
+import 'theme_provider.dart'; 
 
 class MQApp extends StatefulWidget{
   const MQApp({super.key});
@@ -12,25 +15,23 @@ class MQApp extends StatefulWidget{
 class _MQApp extends State<MQApp>{
 
 
-   ThemeMode _themeMode = ThemeMode.system; // Default to system theme
 
-  void toggleTheme(bool isDarkMode) {
-    setState(() {
-      _themeMode = isDarkMode ? ThemeMode.dark : ThemeMode.light;
-    });
-  }
+ 
   
 @override
   Widget build(context){
-    return MaterialApp( 
-       theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: _themeMode,
-      home:   Scaffold(
-        body: LoginScreen(toggleTheme: toggleTheme), 
-          
+    return ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode:  themeProvider.themeMode,
+            home:  const LoginScreen(),
+          );
+        },
       ),
     );
-  
   }
 }

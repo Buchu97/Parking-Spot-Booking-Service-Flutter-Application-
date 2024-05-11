@@ -1,9 +1,10 @@
-// import 'dart:async';
+
 
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
 import 'package:mvp_mq/extension.dart';
 import 'package:mvp_mq/mq_app.dart';
+import 'package:mvp_mq/mq_home.dart';
 import 'package:mvp_mq/service_button.dart';
 
 class ParkingPass extends StatefulWidget {
@@ -109,8 +110,12 @@ class _ParkingPass extends State<ParkingPass> {
 
                   ),
                   ServiceButton(
-                    text: "Pay",
-                    nextPage: () {},
+                    text: "Home",
+                    nextPage: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>const MQHome(),
+                ));
+              },
                   ),
                 ],
               ),

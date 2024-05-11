@@ -5,8 +5,8 @@ import 'package:mvp_mq/service_button.dart';
 import 'package:mvp_mq/sign_in.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key,required this.toggleTheme});
-   final void Function(bool) toggleTheme;
+  const SignupScreen({super.key});
+
   @override
   State<SignupScreen> createState(){
     return _SignupScreenState();
@@ -28,7 +28,7 @@ class _SignupScreenState extends State<SignupScreen> {
         print("Attempting to sign up with email: $_emailController.text and password: $_passwordController.text");
       if (user != null) {
         Navigator.of(context).push(
-         MaterialPageRoute(builder: (context) =>  LoginScreen(toggleTheme: widget.toggleTheme)),
+         MaterialPageRoute(builder: (context) => const LoginScreen(),)
           );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

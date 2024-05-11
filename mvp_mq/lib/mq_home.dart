@@ -3,26 +3,29 @@ import 'package:mvp_mq/map_view.dart';
 import 'package:mvp_mq/parking_history.dart';
 import 'package:mvp_mq/select_campus.dart';
 import 'package:mvp_mq/service_button.dart';
+import 'package:mvp_mq/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class MQHome extends StatelessWidget {
   
-  const MQHome({super.key,required this.toggleTheme});
-   final void Function(bool) toggleTheme;
-  // final void Function() selectCampus;
+   const MQHome({super.key});
+  
+
   @override
   Widget build( context) {
+      final themeProvider = Provider.of<ThemeProvider>(context);
     return 
       Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           title: const Text('Welcome to MQ APP'),
           
-          // backgroundColor: Colors.pink,
+          
           centerTitle: true,
           actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),
-            onPressed: () => toggleTheme(Theme.of(context).brightness == Brightness.light),
+            onPressed: () => themeProvider.toggleTheme(Theme.of(context).brightness == Brightness.light),
           ),
         ],
         ),

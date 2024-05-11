@@ -7,8 +7,8 @@ import 'package:mvp_mq/sign_up.dart';
 
 class LoginScreen extends StatefulWidget {
   
-  const LoginScreen({super.key,required this.toggleTheme});
-   final void Function(bool) toggleTheme;
+  const LoginScreen({super.key});
+
 
   @override
   State<LoginScreen> createState(){
@@ -31,7 +31,7 @@ final TextEditingController _passwordController = TextEditingController();
         _passwordController.text);
       if (user != null) {
         Navigator.of(context).pushReplacement(
-    MaterialPageRoute(builder: (context) => MQHome(toggleTheme: widget.toggleTheme)),
+    MaterialPageRoute(builder: (context) =>  MQHome(),)
   );
       } else {
        final String errorMessage = FirebaseAuth.instance.currentUser?.toString() ?? "Login Failed. Try Again!";
@@ -90,7 +90,7 @@ void dispose() {
               onPressed: () {
                 
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => SignupScreen(toggleTheme: widget.toggleTheme)),
+                  MaterialPageRoute(builder: (context) => const SignupScreen(),)
                 );
               },
               child: const Text('Don\'t have an account? Sign up'),
