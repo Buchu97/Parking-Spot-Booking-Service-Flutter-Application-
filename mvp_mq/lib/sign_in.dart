@@ -57,6 +57,7 @@ void dispose() {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        automaticallyImplyLeading: false,
       ),
       body: Form(
         key: _formKey,

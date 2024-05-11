@@ -5,7 +5,6 @@ import 'package:mvp_mq/service_button.dart';
 
 class SelectCampus extends StatelessWidget {
   const SelectCampus({super.key});
-  // final void Function() enterDetails;
 
  
 

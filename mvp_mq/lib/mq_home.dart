@@ -56,6 +56,7 @@ class MQHome extends StatelessWidget {
               await FirebaseAuth.instance.signOut();
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const LoginScreen(),
+                  
                 ));
             
           
