@@ -21,7 +21,7 @@ void main() {
 
     expect(find.byType(EnterDetails), findsOneWidget);
   });
-  testWidgets('Macquarie City Campus button is present and can be tapped', (WidgetTester tester) async {
+  testWidgets('Macquarie City Campus button is present and can be tapped & nothing will happen', (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     final cityCampusButton = find.text('Macquarie City Campus\nSydney, Australia');
