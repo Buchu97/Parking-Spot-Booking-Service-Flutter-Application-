@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/map_view.dart';
 import 'package:mvp_mq/parking_history.dart';
 import 'package:mvp_mq/select_campus.dart';
 import 'package:mvp_mq/service_button.dart';
+import 'package:mvp_mq/sign_in.dart';
 import 'package:mvp_mq/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -49,8 +51,16 @@ class MQHome extends StatelessWidget {
                   builder: (context) => const ParkingHistoryScreen(),
                 ));
               }),
-              ServiceButton(text: 'Submit a Query', nextPage: (){}),
-              ServiceButton(text: 'Message',nextPage: (){}),
+              ServiceButton(text: 'Log Out', nextPage: 
+                 () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ));
+            
+          
+              }),
+             
             ],
           ),
         ),
