@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
 import 'package:mvp_mq/extension.dart';
-import 'package:mvp_mq/mq_app.dart';
 import 'package:mvp_mq/mq_home.dart';
 import 'package:mvp_mq/service_button.dart';
 
@@ -15,6 +14,8 @@ class ParkingPass extends StatefulWidget {
   State<ParkingPass> createState() {
     return _ParkingPass();
   }
+
+  navigateAndRefresh() {}
 }
 
 class _ParkingPass extends State<ParkingPass> {
@@ -94,7 +95,7 @@ class _ParkingPass extends State<ParkingPass> {
                       );
                       Future.delayed(const Duration(seconds: 2), () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const MQApp(),
+                          builder: (context) => const MQHome(),
                         ));
                       });
                       }else{

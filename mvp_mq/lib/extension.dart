@@ -94,9 +94,7 @@ class _ExtensionState extends State<Extension> {
                  Map<String, dynamic>? updatedPass = await DatabaseHelper.instance.getParkingPassById(widget.id);
                   
                  
-                    print("Updated Duration: ${updatedPass?['duration']}");
                     if (updatedPass != null) {
-        // Show a snackbar to inform the user that their time has been extended
         ScaffoldMessenger.of(context).showSnackBar(
          const SnackBar(
             content: Text('Your time has been extended.'),
@@ -104,12 +102,10 @@ class _ExtensionState extends State<Extension> {
           ),
         );
         
-        // Navigate back to the parking pass page after a short delay
         Future.delayed(const Duration(seconds: 2), () {
           Navigator.of(context).pop();
         });
       } else {
-        // Handle the case where no updated pass is found
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Failed to retrieve updated parking pass.'),
@@ -118,7 +114,6 @@ class _ExtensionState extends State<Extension> {
         );
       }
     } else {
-      // Handle invalid input for hours
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Please enter a valid number of hours.'),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/mq_app.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:mvp_mq/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); 
@@ -14,5 +16,10 @@ Future<void> main() async {
       projectId: "mvp-mq", 
     ),
   );
-  runApp(const MQApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<ThemeProvider>(
+          create: (_) => ThemeProvider(),
+        ),
+  ],
+  child: const MQApp()));
 }

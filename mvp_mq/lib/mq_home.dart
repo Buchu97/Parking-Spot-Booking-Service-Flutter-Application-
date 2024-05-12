@@ -15,19 +15,21 @@ class MQHome extends StatelessWidget {
 
   @override
   Widget build( context) {
-      final themeProvider = Provider.of<ThemeProvider>(context);
     return 
       Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
+           automaticallyImplyLeading: false,
           title: const Text('Welcome to MQ APP'),
           
           
           centerTitle: true,
           actions: [
+            
           IconButton(
             icon: const Icon(Icons.brightness_6),
-            onPressed: () => themeProvider.toggleTheme(Theme.of(context).brightness == Brightness.light),
+            onPressed: ()  {final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    themeProvider.toggleTheme(themeProvider.themeMode == ThemeMode.light);},
           ),
         ],
         ),

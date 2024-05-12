@@ -29,9 +29,7 @@ class MapWidget extends StatelessWidget {
              
               fit: BoxFit.fill,
               errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                print(exception.toString());
                     if (stackTrace != null) {
-            print(stackTrace);
                     }
                     return const Text('Failed to load image');
                 },

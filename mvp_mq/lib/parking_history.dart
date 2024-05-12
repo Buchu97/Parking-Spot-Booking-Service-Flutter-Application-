@@ -44,7 +44,6 @@ Future<void> deleteAllParkingPasses() async {
           IconButton(
             icon: const Icon(Icons.delete_forever),
             onPressed: deleteAllParkingPasses,
-            tooltip: 'Delete All',
           ),
         ],
       ),
@@ -64,10 +63,8 @@ Future<void> deleteAllParkingPasses() async {
                 return Stack(
                   children: [
                     Card(
-                      // color: Colors.pink[50],
                       child: ListTile(
                         leading: CircleAvatar(
-                          // backgroundColor: Colors.pink[300],
                           child: Text('${index + 1}'),
                         ),
                         title: Text(parkingPass['parkingLocation'] ??
@@ -84,7 +81,6 @@ Future<void> deleteAllParkingPasses() async {
                       child: InkWell(
                         onTap: () => deleteParkingPass(parkingPass['id']),
                         child: const Icon(Icons.delete)
-                            // color: Colors.red[800], size: 25),
                       ),
                     ),
                   ],

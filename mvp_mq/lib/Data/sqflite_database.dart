@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-class DatabaseHelper {
+class DatabaseHelper  {
   static DatabaseHelper? _instance;
   static Database? _database;
 
@@ -45,10 +45,12 @@ class DatabaseHelper {
     );
   }
 
+  @override
   Future<int> insertParkingPass(Map<String, dynamic> data) async {
     final db = await database;
     return await db.insert('ParkingPass', data);
   }
+  @override
   Future<int> updateParkingPass(int id, Map<String, dynamic> newData) async {
   final db = await database;
   return await db.update(
@@ -58,7 +60,8 @@ class DatabaseHelper {
     whereArgs: [id],
   );
 }
-Future<int> deleteParkingPass( int id) async {
+@override
+  Future<int> deleteParkingPass( int id) async {
   final db = await database;
   return await db.delete(
     'ParkingPass',
@@ -66,7 +69,8 @@ Future<int> deleteParkingPass( int id) async {
     whereArgs: [id],
   );
 }
-Future<Map<String, dynamic>?> getParkingPassById(int id) async {
+@override
+  Future<Map<String, dynamic>?> getParkingPassById(int id) async {
   final db = await database;
   List<Map<String,dynamic>?> maps = await db.query(
     'ParkingPass',

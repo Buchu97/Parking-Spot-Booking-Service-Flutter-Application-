@@ -1,15 +1,10 @@
-// import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
 import 'package:mvp_mq/parking_pass.dart';
 import 'package:mvp_mq/service_button.dart';
-// import 'package:mvp_mq/mq_app.dart';
 
 class EnterDetails extends StatefulWidget {
   const EnterDetails({super.key});
-  // final void Function() parkingPass;
-  // Future<int> key;
 
   @override
   State<EnterDetails> createState() {
@@ -57,13 +52,11 @@ class _EnterDetails extends State<EnterDetails> {
   Widget build(context) {
     return Center(
       child: Scaffold(
-       
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -73,16 +66,13 @@ class _EnterDetails extends State<EnterDetails> {
               children: [
                 const Text(
                   'Enter Parking Location',
-                  
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 8),
                 TextField(
                   controller: _locationTextController,
-                  // style: const TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     filled: true,
-                   
                     hintText: 'Carpark - P South 2',
                     hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 191, 188, 188)),
@@ -92,19 +82,16 @@ class _EnterDetails extends State<EnterDetails> {
                     ),
                   ),
                 ),
-                 const SizedBox(height: 20),
+                const SizedBox(height: 20),
                 const Text(
                   'Enter Start Time',
-                 
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 8),
                 TextField(
                   controller: _startTimeTextController,
-                  // style: const TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     filled: true,
-                    
                     hintText: '10 AM',
                     hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 191, 188, 188)),
@@ -117,7 +104,6 @@ class _EnterDetails extends State<EnterDetails> {
                 const SizedBox(height: 20),
                 const Text(
                   'Enter Duration(In Hours)',
-                 
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 8),
@@ -125,7 +111,6 @@ class _EnterDetails extends State<EnterDetails> {
                   controller: _durationTextController,
                   decoration: InputDecoration(
                     filled: true,
-                   
                     hintText: '2',
                     hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 191, 188, 188)),
@@ -138,7 +123,6 @@ class _EnterDetails extends State<EnterDetails> {
                 const SizedBox(height: 20),
                 const Text(
                   'Enter Vehicle Number Plate',
-                
                   textAlign: TextAlign.left,
                 ),
                 const SizedBox(height: 8),
@@ -146,7 +130,6 @@ class _EnterDetails extends State<EnterDetails> {
                   controller: _vehicleNumTextController,
                   decoration: InputDecoration(
                     filled: true,
-                    
                     hintText: 'ABC 6251 ALIA',
                     hintStyle: const TextStyle(
                         color: Color.fromARGB(255, 191, 188, 188)),

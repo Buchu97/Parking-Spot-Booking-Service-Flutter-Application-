@@ -32,17 +32,4 @@ class _ServiceButtonState extends State<ServiceButton> {
   }
 }
 
- //  ElevatedButton.styleFrom(
-                
-        //         // foregroundColor: Colors.white, backgroundColor: Colors.pink,
-        //         textStyle: const TextStyle(fontSize: 18),
-        //       ),
-        // ElevatedButton.styleFrom(
-          
-        //   foregroundColor: Colors.white, backgroundColor: Colors.pinkAccent,
-        //   textStyle: const TextStyle(fontSize: 18),
-        //   padding: const EdgeInsets.symmetric(vertical: 12.0),
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(10.0),
-        //   ),
-        // ),
+ 

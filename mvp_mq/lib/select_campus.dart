@@ -16,7 +16,7 @@ class SelectCampus extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back,
-               ), // Back button in AppBar
+               ), 
             onPressed: () => Navigator.of(context).pop(),
           ),
        
@@ -46,7 +46,6 @@ class SelectCampus extends StatelessWidget {
                 text: 'Macquarie City Campus\nSydney, Australia',
                 nextPage: (){},
   
-    // Optionally restart app or confirm to the user
 ),
           ],
         ),
