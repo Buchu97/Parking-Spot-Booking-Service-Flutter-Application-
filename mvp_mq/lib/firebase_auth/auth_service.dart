@@ -5,7 +5,7 @@ class FireBaseAuthService {
 
   FireBaseAuthService({FirebaseAuth? firebaseAuth})
       : _auth = firebaseAuth ?? FirebaseAuth.instance;
-
+ Stream<User?> get user => _auth.authStateChanges();
   Future<User?> signUpWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);

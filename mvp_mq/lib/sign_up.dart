@@ -25,7 +25,6 @@ class _SignupScreenState extends State<SignupScreen> {
     if (_formKey.currentState!.validate()) {
       User? user = await FireBaseAuthService().signUpWithEmailAndPassword(
         _emailController.text, _passwordController.text);
-        print("Attempting to sign up with email: $_emailController.text and password: $_passwordController.text");
       if (user != null) {
         Navigator.of(context).push(
          MaterialPageRoute(builder: (context) => const LoginScreen(),)
@@ -61,6 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                 key: const Key('username'), 
                 controller: _usernameController,
                 decoration: const InputDecoration(labelText: 'Username'),
                 validator: (value) => value!.isEmpty ? 'Username cannot be empty' : null,
@@ -69,6 +69,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                 key: const Key('email'), 
                  controller: _emailController,
                 decoration: const InputDecoration(labelText: 'Email'),
                 validator: (value) => value!.isEmpty ? 'Email cannot be empty' : null,
@@ -77,6 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                key: const Key('password'), 
                controller: _passwordController,
                 decoration: const InputDecoration(labelText: 'Password'),
                 validator: (value) => value!.isEmpty ? 'Password cannot be empty' : null,

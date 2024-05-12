@@ -40,7 +40,6 @@ class _EnterDetails extends State<EnterDetails> {
     };
 
     int id = await DatabaseHelper.instance.insertParkingPass(parkingPassData);
-    print(id);
 
     if (!mounted) return;
 

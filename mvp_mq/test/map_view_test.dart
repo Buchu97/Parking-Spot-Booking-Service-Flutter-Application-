@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mvp_mq/map_view.dart';
-import 'package:mvp_mq/mq_home.dart';
 
 void main() {
   const testImagePath = 'lib/assets/mq_campus_map.jpeg';
