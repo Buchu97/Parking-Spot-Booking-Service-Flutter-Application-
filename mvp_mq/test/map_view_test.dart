@@ -11,13 +11,12 @@ void main() {
     );
   }
 
-  testWidgets('Image loads correctly with the given path', (WidgetTester tester) async {
+  testWidgets('Image loads correctly with the given path',
+      (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     final image = tester.widget<Image>(find.byType(Image));
     expect(image.image, isA<AssetImage>());
     expect((image.image as AssetImage).assetName, equals(testImagePath));
   });
-
-    
 }

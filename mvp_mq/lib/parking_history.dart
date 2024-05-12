@@ -29,16 +29,17 @@ class _ParkingHistoryScreenState extends State<ParkingHistoryScreen> {
     await DatabaseHelper.instance.deleteParkingPass(id);
     refreshParkingHistory();
   }
-Future<void> deleteAllParkingPasses() async {
+
+  Future<void> deleteAllParkingPasses() async {
     await DatabaseHelper.instance.deleteCustomDatabase();
-     await DatabaseHelper.database; 
-    refreshParkingHistory(); 
+    await DatabaseHelper.database;
+    refreshParkingHistory();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
         title: const Text('Parking History'),
         actions: [
           IconButton(
@@ -79,9 +80,8 @@ Future<void> deleteAllParkingPasses() async {
                       bottom: 10,
                       right: 3,
                       child: InkWell(
-                        onTap: () => deleteParkingPass(parkingPass['id']),
-                        child: const Icon(Icons.delete)
-                      ),
+                          onTap: () => deleteParkingPass(parkingPass['id']),
+                          child: const Icon(Icons.delete)),
                     ),
                   ],
                 );

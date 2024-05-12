@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 class DatabaseHelper {
   static DatabaseHelper? _instance;
   static Database? _database;
-static String? customDatabasePath;
+  static String? customDatabasePath;
   DatabaseHelper._();
   static DatabaseHelper get instance {
     _instance ??= DatabaseHelper._();

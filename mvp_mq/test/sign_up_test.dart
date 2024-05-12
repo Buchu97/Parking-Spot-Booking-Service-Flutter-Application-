@@ -20,7 +20,8 @@ void main() {
     expect(find.byType(ServiceButton), findsOneWidget);
   });
 
-  testWidgets('Entering User Information in Signup Form', (WidgetTester tester) async {
+  testWidgets('Entering User Information in Signup Form',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(

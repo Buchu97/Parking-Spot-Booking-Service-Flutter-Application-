@@ -10,17 +10,15 @@ import 'package:provider/provider.dart';
 
 void main() {
   Widget createWidgetUnderTest() {
-  return MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => ThemeProvider()), 
-    ],
-    child: const MaterialApp(
-      home: ParkingPass(id: 1),
-    ),
-  );
-}
-
-
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: const MaterialApp(
+        home: ParkingPass(id: 1),
+      ),
+    );
+  }
 
   testWidgets('All buttons are present', (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
@@ -28,33 +26,25 @@ void main() {
     expect(find.text('Home'), findsOneWidget);
     expect(find.text('Extend Time'), findsOneWidget);
     expect(find.text('Cancel'), findsOneWidget);
-    
   });
 
-  testWidgets('Navigates to Extension Widget on tapping Extend Time button', (WidgetTester tester) async {
+  testWidgets('Navigates to Extension Widget on tapping Extend Time button',
+      (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
-
 
     final mapButton = find.text('Extend Time');
     await tester.tap(mapButton);
     await tester.pumpAndSettle();
-    expect(find.byType( Extension), findsOneWidget);
-    
+    expect(find.byType(Extension), findsOneWidget);
   });
 
-   testWidgets('Navigates to MQHome Widget on tapping Home button', (WidgetTester tester) async {
+  testWidgets('Navigates to MQHome Widget on tapping Home button',
+      (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
-
-
-     
-
 
     final mapButton = find.text('Home');
     await tester.tap(mapButton);
     await tester.pumpAndSettle();
-    expect(find.byType( MQHome), findsOneWidget);
-    
+    expect(find.byType(MQHome), findsOneWidget);
   });
-    
-  
 }

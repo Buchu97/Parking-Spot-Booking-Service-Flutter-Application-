@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:mvp_mq/Data/sqflite_database.dart';
 import 'package:mvp_mq/extension.dart';
@@ -51,11 +49,9 @@ class _ParkingPass extends State<ParkingPass> {
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Container(
-         
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,8 +71,7 @@ class _ParkingPass extends State<ParkingPass> {
                   }
                 },
               ),
-              ServiceButton(text: "Extend Time", nextPage: navigateAndRefresh
-                  ),
+              ServiceButton(text: "Extend Time", nextPage: navigateAndRefresh),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,39 +79,38 @@ class _ParkingPass extends State<ParkingPass> {
                   ServiceButton(
                     text: "Cancel",
                     nextPage: () async {
-                      
-                      int deletedCount = await DatabaseHelper.instance.deleteParkingPass(widget.id);
-                      if(deletedCount != 0){
-                          ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Your parking pass has been deleted'),
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
-                      Future.delayed(const Duration(seconds: 2), () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const MQHome(),
-                        ));
-                      });
-                      }else{
+                      int deletedCount = await DatabaseHelper.instance
+                          .deleteParkingPass(widget.id);
+                      if (deletedCount != 0) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Deleting Parking Pass was unsuccessful'),
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
+                          const SnackBar(
+                            content: Text('Your parking pass has been deleted'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                        Future.delayed(const Duration(seconds: 2), () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const MQHome(),
+                          ));
+                        });
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content:
+                                Text('Deleting Parking Pass was unsuccessful'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                       }
-                    
                     },
-
                   ),
                   ServiceButton(
                     text: "Home",
-                    nextPage: (){
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>const MQHome(),
-                ));
-              },
+                    nextPage: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const MQHome(),
+                      ));
+                    },
                   ),
                 ],
               ),
@@ -130,7 +124,6 @@ class _ParkingPass extends State<ParkingPass> {
   Widget buildParkingPassContent(
       BuildContext context, Map<String, dynamic> data) {
     return Container(
-      
       padding: const EdgeInsets.all(20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -138,7 +131,6 @@ class _ParkingPass extends State<ParkingPass> {
         children: [
           const Text(
             'Your Parking Pass',
-           
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -154,11 +146,9 @@ class _ParkingPass extends State<ParkingPass> {
             padding: EdgeInsets.symmetric(vertical: 20.0),
             child: Text(
               'Note: Exceeding the time on your Parking Pass will result in \$10 fine for every 10 minutes\nYou can still choose to extend the time limit on your parking pass!',
-             
               textAlign: TextAlign.center,
             ),
           ),
-          
         ],
       ),
     );
@@ -170,8 +160,7 @@ class _ParkingPass extends State<ParkingPass> {
       child: RichText(
         text: TextSpan(
           text: '$title ',
-          style:Theme.of(context).textTheme.bodyMedium
-              ,
+          style: Theme.of(context).textTheme.bodyMedium,
           children: [
             TextSpan(
               text: value,

@@ -9,28 +9,31 @@ void main() {
       home: SelectCampus(),
     );
   }
-  
 
-  testWidgets('Navigates to EnterDetails when Wallumattagal Campus button is tapped', (WidgetTester tester) async {
+  testWidgets(
+      'Navigates to EnterDetails when Wallumattagal Campus button is tapped',
+      (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
-    
-    final wallumattagalButton = find.text('Wallumattagal Campus\nMacquarie Park');
+    final wallumattagalButton =
+        find.text('Wallumattagal Campus\nMacquarie Park');
     await tester.tap(wallumattagalButton);
-    await tester.pumpAndSettle(); 
+    await tester.pumpAndSettle();
 
     expect(find.byType(EnterDetails), findsOneWidget);
   });
-  testWidgets('Macquarie City Campus button is present and can be tapped & nothing will happen', (WidgetTester tester) async {
+  testWidgets(
+      'Macquarie City Campus button is present and can be tapped & nothing will happen',
+      (WidgetTester tester) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
-    final cityCampusButton = find.text('Macquarie City Campus\nSydney, Australia');
-    expect(cityCampusButton, findsOneWidget); 
-
+    final cityCampusButton =
+        find.text('Macquarie City Campus\nSydney, Australia');
+    expect(cityCampusButton, findsOneWidget);
 
     await tester.tap(cityCampusButton);
     await tester.pump();
 
-    expect(find.byType(EnterDetails), findsNothing); 
+    expect(find.byType(EnterDetails), findsNothing);
   });
 }

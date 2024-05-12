@@ -9,65 +9,66 @@ import 'package:mvp_mq/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class MQHome extends StatelessWidget {
-  
-   const MQHome({super.key});
-  
+  const MQHome({super.key});
 
   @override
-  Widget build( context) {
-    return 
-      Scaffold(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        appBar: AppBar(
-           automaticallyImplyLeading: false,
-          title: const Text('Welcome to MQ APP'),
-          
-          
-          centerTitle: true,
-          actions: [
-            
+  Widget build(context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text('Welcome to MQ APP'),
+        centerTitle: true,
+        actions: [
           IconButton(
-            icon: const Icon(Icons.brightness_6),
-            onPressed: ()  {final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    themeProvider.toggleTheme(themeProvider.themeMode == ThemeMode.light);},
+            icon: const Icon(Icons.dark_mode_rounded),
+            onPressed: () {
+              final themeProvider =
+                  Provider.of<ThemeProvider>(context, listen: false);
+              themeProvider
+                  .toggleTheme(themeProvider.themeMode == ThemeMode.light);
+            },
           ),
         ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            ServiceButton(
+                text: 'Parking Spot',
+                nextPage: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const SelectCampus(),
+                  ));
+                }),
+            ServiceButton(
+                text: 'Wallumattagal Campus Map',
+                nextPage: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const MapWidget(
+                        imagePath: 'lib/assets/mq_campus_map.jpeg'),
+                  ));
+                }),
+            ServiceButton(
+                text: 'Parking History',
+                nextPage: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ParkingHistoryScreen(),
+                  ));
+                }),
+            ServiceButton(
+                text: 'Log Out',
+                nextPage: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ));
+                }),
+          ],
         ),
-
-        body:  Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ServiceButton(text: 'Parking Spot',nextPage:  () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SelectCampus(),
-                ));
-              }),
-              ServiceButton(text: 'Wallumattagal Campus Map', nextPage: (){
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const MapWidget(imagePath: 'lib/assets/mq_campus_map.jpeg'),
-                ));
-              }),
-              ServiceButton(text: 'Parking History', nextPage: (){
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ParkingHistoryScreen(),
-                ));
-              }),
-              ServiceButton(text: 'Log Out', nextPage: 
-                 () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const LoginScreen(),
-                  
-                ));
-            
-          
-              }),
-             
-            ],
-          ),
-        ),
-    
+      ),
     );
   }
 }

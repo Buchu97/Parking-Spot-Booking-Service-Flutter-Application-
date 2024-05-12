@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  primaryColor: const Color(0xFFEFAAC4),  
+  primaryColor: const Color(0xFFEFAAC4),
   colorScheme: ColorScheme.light(
     primary: const Color(0xFFEFAAC4),
     secondary: Colors.pink[200]!,
-    onPrimary: Colors.black,  
+    onPrimary: Colors.black,
     onSecondary: Colors.black,
     surface: Colors.pink[50]!,
     background: Colors.pink[50]!,
@@ -16,7 +16,7 @@ final ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
   appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFFEFAAC4),
-    foregroundColor: Colors.black,  
+    foregroundColor: Colors.black,
     elevation: 0,
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -30,16 +30,16 @@ final ThemeData lightTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      foregroundColor: Colors.black, backgroundColor: const Color(0xFFEFAAC4),
+      foregroundColor: Colors.black,
+      backgroundColor: const Color(0xFFEFAAC4),
     ),
   ),
   textTheme: const TextTheme(
-    titleLarge: TextStyle(color: Colors.black),  
-    bodyLarge: TextStyle(color: Colors.black),  
-    bodyMedium: TextStyle(color: Colors.black),  
+    titleLarge: TextStyle(color: Colors.black),
+    bodyLarge: TextStyle(color: Colors.black),
+    bodyMedium: TextStyle(color: Colors.black),
   ),
-   
-  buttonTheme:const ButtonThemeData(
+  buttonTheme: const ButtonThemeData(
     buttonColor: Color(0xFFEFAAC4),
     textTheme: ButtonTextTheme.primary,
   ),
@@ -47,9 +47,9 @@ final ThemeData lightTheme = ThemeData(
 
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  primaryColor: const Color(0xFF79163C), 
+  primaryColor: const Color(0xFF79163C),
   colorScheme: ColorScheme.dark(
-    primary:  const Color(0xFF79163C),
+    primary: const Color(0xFF79163C),
     secondary: Colors.pink[700]!,
     onPrimary: Colors.white,
     onSecondary: Colors.white,
@@ -59,7 +59,7 @@ final ThemeData darkTheme = ThemeData(
     onError: Colors.white,
   ),
   scaffoldBackgroundColor: Colors.grey[900],
-  appBarTheme:  AppBarTheme(
+  appBarTheme: AppBarTheme(
     backgroundColor: Colors.pink[700],
     foregroundColor: Colors.white,
     elevation: 0,
@@ -75,7 +75,8 @@ final ThemeData darkTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      foregroundColor: Colors.white, backgroundColor: Colors.pink[700],
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.pink[700],
     ),
   ),
   textTheme: const TextTheme(
